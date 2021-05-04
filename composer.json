@@ -1,0 +1,19 @@
+{
+  "name": "creativestyle/magesuite-address-splitter",
+  "description": "Tool allows to split customer addresses into two parts, street and house number.",
+  "type": "magento2-module",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+      "viison/address-splitter": "^0.3.0",
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "MageSuite\\AddressSplitter\\": ""
+    }
+  }
+}
+
