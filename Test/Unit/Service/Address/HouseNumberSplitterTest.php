@@ -49,6 +49,8 @@ class HouseNumberSplitterTest extends \PHPUnit\Framework\TestCase
             ['1101 Madison St # 600', 'Madison St', '1101 # 600'],
             ['574 E 10th Street', 'E 10th Street', '574'],
             ['D 6, 2', 'D 6', '2'],
+            ["12 Main Street \n 12 Main Street", 'Main Street', '12'],
+            ["Olpener \n Straße 1096", 'Olpener Straße', '1096']
         ];
     }
 }
