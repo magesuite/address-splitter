@@ -16,6 +16,9 @@ class HouseNumberSplitter
 
     public function splitStreet($street, $returnRaw = false)
     {
+        $street = $this->removeDuplicates($street);
+        $street = $this->mergeInOneLine($street);
+
         $splittedStreet = $this->splitStreetString($street);
 
         if ($returnRaw || is_string($splittedStreet)) {
@@ -42,6 +45,30 @@ class HouseNumberSplitter
             $splittedStreet['streetName'],
             $splittedStreet['houseNumber']
         ];
+    }
+
+    private function removeDuplicates($street)
+    {
+        if (substr_count($street, "\n") != 1) {
+            return $street;
+        }
+
+        $streetParts = explode("\n", $street);
+
+        if (count($streetParts) < 2) {
+            return $street;
+        }
+
+        if (trim($streetParts[0]) != trim($streetParts[1])) {
+            return $street;
+        }
+
+        return $streetParts[0];
+    }
+
+    private function mergeInOneLine($street)
+    {
+        return  preg_replace('/\s+/', ' ', $street);
     }
 
     protected function splitStreetString($street)
